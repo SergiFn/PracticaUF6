@@ -161,4 +161,7 @@ public class PuntsDAO {
 		}
 		return existeix;
 	}
+	public void tancarConnexio(){
+		g.tancarConnexio();
+	}
 }

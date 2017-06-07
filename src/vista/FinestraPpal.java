@@ -318,6 +318,8 @@ public class FinestraPpal extends JFrame implements ActionListener {
 		if((obj instanceof JButton)){
 			if((e.getActionCommand().equals("Sortir"))){
 				this.dispose();
+				d.tancarConnexio();
+				p.tancarConnexio();
 			}
 			if((e.getActionCommand().equals("Alta Destinacio"))){
 				a.show();

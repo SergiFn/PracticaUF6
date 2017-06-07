@@ -133,7 +133,6 @@ public class FinestraBaixaDestinacionsBD extends JInternalFrame implements Actio
 						pd.baixaPunts(d.consultarID(taula.getValueAt(taula.getSelectedRow(), 5).toString()));
 					}
 					d.baixaDestinacio(taula.getValueAt(taula.getSelectedRow(), 0).toString());
-					p.comprobarDestinacions();
 					p.pa.afegirDestinacions();
 					p.actualitzarTaules();
 					p.actualitzarPunts();

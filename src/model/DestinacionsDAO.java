@@ -28,7 +28,8 @@ public class DestinacionsDAO {
 				"Poblacio VARCHAR(255) NOT NULL,"+
 				"CP VARCHAR(255),"+
 				"Platja VARCHAR(255),"
-				+ "PRIMARY KEY(ID));";
+				+ "PRIMARY KEY(ID),"
+				+"UNIQUE(Poblacio));";
 		g.modificarRegistre(consultaSQL);
 		
 	}
@@ -191,5 +192,24 @@ public class DestinacionsDAO {
 		consultaSQL="INSERT INTO destinacions VALUES("+"'"+dades[0]+"',"+"'"+dades[1]+"',"+"'"+dades[2]+"',"+"'"+dades[3]+"',"+"'"+dades[4]+"',"+"'"+dades[5]+"',"+"'"+dades[6]+"',"+"'"+dades[7]+"'"+");";
 		g.modificarRegistre(consultaSQL);
 		System.out.println("Alta correcte");
+	}
+	
+	public boolean comprobarPoblacions(String poblacio){
+		consultaSQL="SELECT Poblacio FROM destinacions WHERE Poblacio='"+poblacio+"';";
+		ResultSet rs=null;
+		boolean existeix=false;
+		rs=g.consultaRegistres(consultaSQL);
+		try{
+			if(rs.first()){
+				existeix=true;
+			}
+		}catch(SQLException e){
+			System.out.println("Error comprobar Poblacions");
+		}
+		return existeix;
+	}
+	
+	public void tancarConnexio(){
+		g.tancarConnexio();
 	}
 }

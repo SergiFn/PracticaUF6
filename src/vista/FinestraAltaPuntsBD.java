@@ -257,18 +257,22 @@ public class FinestraAltaPuntsBD extends JInternalFrame implements ActionListene
 				p.pb.comprobarPunts();
 			}
 			if((e.getActionCommand().equals("Alta"))){
-				if(!nom.getText().equals("") && !desc.getText().equals("")){
-					pd.afegirPunts(new PuntsInteres("id",nom.getText(),desc.getText(),tipus.getSelectedItem().toString(),activitats.getSelectedItem().toString()),puntsDestinacio.getSelectedItem().toString());
-					p.actualitzarTaules();
-					p.actualitzarPunts();
-					llimpiarText();
-					JOptionPane.showMessageDialog(this,"Alta realitzada","Alta Punts d'Interés",JOptionPane.INFORMATION_MESSAGE);
+				if(pd.comprobarPunts(nom.getText(),puntsDestinacio.getSelectedItem().toString())){
+					JOptionPane.showMessageDialog(this,"Punt d'interes ja existeix","Alta Punts d'Interés",JOptionPane.ERROR_MESSAGE);
 				}else{
-					if(nom.getText().equals(""))
-						JOptionPane.showMessageDialog(this,"Nom no introduït","Error Nom",JOptionPane.WARNING_MESSAGE);
-					
-					if(desc.getText().equals(""))
-						JOptionPane.showMessageDialog(this,"Descripció no introduïda","Error Nom",JOptionPane.WARNING_MESSAGE);
+					if(!nom.getText().equals("") && !desc.getText().equals("")){
+						pd.afegirPunts(new PuntsInteres("id",nom.getText(),desc.getText(),tipus.getSelectedItem().toString(),activitats.getSelectedItem().toString()),puntsDestinacio.getSelectedItem().toString());
+						p.actualitzarTaules();
+						p.actualitzarPunts();
+						llimpiarText();
+						JOptionPane.showMessageDialog(this,"Alta realitzada","Alta Punts d'Interés",JOptionPane.INFORMATION_MESSAGE);
+					}else{
+						if(nom.getText().equals(""))
+							JOptionPane.showMessageDialog(this,"Nom no introduït","Error Nom",JOptionPane.WARNING_MESSAGE);
+						
+						if(desc.getText().equals(""))
+							JOptionPane.showMessageDialog(this,"Descripció no introduïda","Error Nom",JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		}

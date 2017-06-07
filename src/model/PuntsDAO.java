@@ -161,6 +161,20 @@ public class PuntsDAO {
 		}
 		return existeix;
 	}
+	public boolean comprobarPunts(String nom,String poblacio){
+		consultaSQL="SELECT nom FROM punts WHERE nom='"+nom+"' AND poblacio='"+poblacio+"';";
+		boolean existeix=false;
+		ResultSet rs=null;
+		rs=g.consultaRegistres(consultaSQL);
+		try{
+			if(rs.first()){
+				existeix=true;
+			}
+		}catch(SQLException e){
+			System.out.println("error comprobar punts");
+		}
+		return existeix;
+	}
 	public void tancarConnexio(){
 		g.tancarConnexio();
 	}

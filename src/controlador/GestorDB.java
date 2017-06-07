@@ -10,15 +10,25 @@ public class GestorDB {
 	protected String url;
 	protected Connection conn = null;
 	protected Statement stmt = null;
+	String consultaSQL;
+	boolean creada=false;
 	
 	public GestorDB(String server, int port, String bd){
 		this.url = "jdbc:mysql://"+server+":"+port+"/"+bd;
 		try{
 			Class.forName(Constants.DRIVER).newInstance();
 			conn = DriverManager.getConnection(url, Constants.DBUSER, Constants.DBPW);
+			crearBD();
 		}catch(Exception e){
 			System.out.println("No puc instanciar el driver MySQL!");
 		}
+	}
+	
+	public void crearBD(){
+		consultaSQL="CREATE DATABASE IF NOT EXISTS bd_uf6;";
+		modificarRegistre(consultaSQL);
+		consultaSQL="USE bd_uf6";
+		modificarRegistre(consultaSQL);
 	}
 	
 	public int modificarRegistre(String consultaSQL) {

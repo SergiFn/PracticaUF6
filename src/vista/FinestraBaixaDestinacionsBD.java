@@ -41,7 +41,7 @@ public class FinestraBaixaDestinacionsBD extends JInternalFrame implements Actio
 	public void comprobarDestis() {
 		if(d.esBuit()){
 			esborrar.setEnabled(false);
-			esborrar.setToolTipText("Tens que crear una destinació abans de poder donar-n'hi de baixa");
+			esborrar.setToolTipText("Tens que crear una destinaciï¿½ abans de poder donar-n'hi de baixa");
 		}else{
 			esborrar.setEnabled(true);
 			esborrar.setToolTipText(null);
@@ -129,6 +129,9 @@ public class FinestraBaixaDestinacionsBD extends JInternalFrame implements Actio
 			}
 			if((e.getActionCommand().equals("Esborrar"))){
 				if(taula.isRowSelected(taula.getSelectedRow())){
+					if(pd.comprobarPoblacio(taula.getValueAt(taula.getSelectedRow(), 5).toString())){
+						pd.baixaPunts(d.consultarID(taula.getValueAt(taula.getSelectedRow(), 5).toString()));
+					}
 					d.baixaDestinacio(taula.getValueAt(taula.getSelectedRow(), 0).toString());
 					p.comprobarDestinacions();
 					p.pa.afegirDestinacions();

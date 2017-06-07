@@ -26,9 +26,8 @@ public class PuntsDAO {
 				"Descripcio VARCHAR(255),"+
 				"Tipus VARCHAR(255),"+
 				"Activitats VARCHAR(255),"+
-				"Poblacio VARCHAR(255),"+
-				"PRIMARY KEY(ID),"+
-				"FOREIGN KEY (ID) REFERENCES destinacions(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
+				"Poblacio VARCHAR(255)"+
+				");";
 		g.modificarRegistre(consultaSQL);
 	}
 
@@ -61,11 +60,6 @@ public class PuntsDAO {
 		}		
 	}
 
-	public void baixaDestinacio(String id) {
-		consultaSQL="DELETE FROM punts WHERE ID='"+id+"';";
-		g.modificarRegistre(consultaSQL);
-		
-	}
 
 	public void baixaPunts(String id) {
 		consultaSQL="DELETE FROM punts WHERE ID='"+id+"';";
@@ -152,5 +146,19 @@ public class PuntsDAO {
 			e1.printStackTrace();
 		}
 		return correcte;
+	}
+	public boolean comprobarPoblacio(String poblacio){
+		consultaSQL="SELECT * FROM punts WHERE Poblacio='"+poblacio+"';";
+		boolean existeix=false;
+		ResultSet rs = null;
+		rs=g.consultaRegistres(consultaSQL);
+		try{
+			if(rs.next()){
+				existeix=true;
+			}
+		}catch(SQLException e){
+			System.out.println("Error comprobar poblacio");
+		}
+		return existeix;
 	}
 }

@@ -26,8 +26,8 @@ public class PuntsDAO {
 				"Descripcio VARCHAR(255),"+
 				"Tipus VARCHAR(255),"+
 				"Activitats VARCHAR(255),"+
-				"Poblacio VARCHAR(255)"+
-				");";
+				"Poblacio VARCHAR(255),"+
+				"UNIQUE(Nom));";
 		g.modificarRegistre(consultaSQL);
 	}
 

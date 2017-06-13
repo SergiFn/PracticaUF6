@@ -307,6 +307,7 @@ public class FinestraModificacioDestinacionsBD extends JInternalFrame implements
 		//Poblacio
 		poblacio=new JLabel("Poblacio: ");
 		nomPoblacio=new JTextField(15);
+		nomPoblacio.setEnabled(false);
 		nomPoblacio.addKeyListener(new KeyAdapter(){
 			public void keyTyped(KeyEvent e){
 				if(!Character.isLetter(e.getKeyChar())){

@@ -354,35 +354,39 @@ public class FinestraAltaDestinacionsBD extends JInternalFrame implements Action
 				if(d.comprobarPoblacions(nomPoblacio.getText())){
 					JOptionPane.showMessageDialog(this,"Poblacio ja existeix.","Alta Destinació",JOptionPane.ERROR_MESSAGE);
 				}else{
-					if(!idDesti.getText().equals("") && !nomContinent.getText().equals("") && !nomPais.getText().equals("") && !nomCapital.getText().equals("") && !nomCiutat.getText().equals("") && !nomPoblacio.getText().equals("") && !cpDesti.getText().equals("")){
-						d.altaDestinacio(new Destinacions(idDesti.getText(),nomContinent.getText(),nomPais.getText(),nomCapital.getText(),nomCiutat.getText(),nomPoblacio.getText(),cpDesti.getText(),tePlatja));
-						p.actualitzarTaules();
-						p.actualitzarPunts();
-						llimpiarText();
-						JOptionPane.showMessageDialog(this,"Alta realitzada","Alta Destinació",JOptionPane.INFORMATION_MESSAGE);
+					if(d.comprobarID(idDesti.getText())){
+						JOptionPane.showMessageDialog(this,"ID ja existeix.","Alta Destinació",JOptionPane.ERROR_MESSAGE);
 					}else{
-						if(idDesti.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"ID no introduïda","Error ID",JOptionPane.WARNING_MESSAGE);
+						if(!idDesti.getText().equals("") && !nomContinent.getText().equals("") && !nomPais.getText().equals("") && !nomCapital.getText().equals("") && !nomCiutat.getText().equals("") && !nomPoblacio.getText().equals("") && !cpDesti.getText().equals("")){
+							d.altaDestinacio(new Destinacions(idDesti.getText(),nomContinent.getText(),nomPais.getText(),nomCapital.getText(),nomCiutat.getText(),nomPoblacio.getText(),cpDesti.getText(),tePlatja));
+							p.actualitzarTaules();
+							p.actualitzarPunts();
+							llimpiarText();
+							JOptionPane.showMessageDialog(this,"Alta realitzada","Alta Destinació",JOptionPane.INFORMATION_MESSAGE);
+						}else{
+							if(idDesti.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"ID no introduïda","Error ID",JOptionPane.WARNING_MESSAGE);
+							
+							if(nomContinent.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"Continent no introduït","Error Continent",JOptionPane.WARNING_MESSAGE);
+							
+							if(nomPais.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"Pais no introduït","Error Pais",JOptionPane.WARNING_MESSAGE);
+							
+							if(nomCapital.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"Capital no introduïda","Error Capital",JOptionPane.WARNING_MESSAGE);
+							
+							if(nomCiutat.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"Ciutat no introduïda","Error Ciutat",JOptionPane.WARNING_MESSAGE);
 						
-						if(nomContinent.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"Continent no introduït","Error Continent",JOptionPane.WARNING_MESSAGE);
+							if(nomPoblacio.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"Població no introduïda","Error Població",JOptionPane.WARNING_MESSAGE);
 						
-						if(nomPais.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"Pais no introduït","Error Pais",JOptionPane.WARNING_MESSAGE);
-						
-						if(nomCapital.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"Capital no introduïda","Error Capital",JOptionPane.WARNING_MESSAGE);
-						
-						if(nomCiutat.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"Ciutat no introduïda","Error Ciutat",JOptionPane.WARNING_MESSAGE);
-					
-						if(nomPoblacio.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"Població no introduïda","Error Població",JOptionPane.WARNING_MESSAGE);
-					
-						if(cpDesti.getText().equals("")) 
-							JOptionPane.showMessageDialog(this,"CP no introduït","Error CP",JOptionPane.WARNING_MESSAGE);
+							if(cpDesti.getText().equals("")) 
+								JOptionPane.showMessageDialog(this,"CP no introduït","Error CP",JOptionPane.WARNING_MESSAGE);
+						}
 					}
-				}	
+				}
 			}
 		}
 	}

@@ -209,6 +209,20 @@ public class DestinacionsDAO {
 		return existeix;
 	}
 	
+	public boolean comprobarID(String id){
+		consultaSQL="SELECT id FROM destinacions WHERE id='"+id+"';";
+		boolean existeix=false;
+		ResultSet rs=g.consultaRegistres(consultaSQL);
+		try{
+			if(rs.first()){
+				existeix=true;
+			}
+		}catch(SQLException e){
+			System.out.println("Error comprobar ID desti");
+		}
+		return existeix;
+	}
+	
 	public void tancarConnexio(){
 		g.tancarConnexio();
 	}
